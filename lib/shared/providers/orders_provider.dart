@@ -61,6 +61,24 @@ class OrdersNotifier extends StateNotifier<List<RestaurantOrder>> {
     ];
   }
 
+  /// Seed a mock order with real items for demo purposes.
+  void seedMockOrder({
+    required String tableNumber,
+    required List<OrderLine> lines,
+    String status = 'received',
+    Duration ago = Duration.zero,
+  }) {
+    final id = '#${_sequence++}';
+    final order = RestaurantOrder(
+      id: id,
+      tableNumber: tableNumber,
+      lines: lines,
+      status: status,
+      placedAt: DateTime.now().subtract(ago),
+    );
+    state = [order, ...state];
+  }
+
   /// Orders filtered by status.
   List<RestaurantOrder> get received =>
       state.where((o) => o.status == 'received').toList();

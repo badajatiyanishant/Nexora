@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_typography.dart';
+import '../../../shared/models/order.dart';
 import '../../../shared/providers/orders_provider.dart';
 
 /// Owner Dashboard — analytics, menu management, restaurant settings.
@@ -57,13 +58,59 @@ class _OwnerDashboardState extends ConsumerState<OwnerDashboard> {
 
   void _seedMockOrders(WidgetRef ref) {
     final notifier = ref.read(ordersProvider.notifier);
-    notifier.placeOrder(
+
+    notifier.seedMockOrder(
       tableNumber: '3',
-      items: [],
+      status: 'received',
+      ago: const Duration(minutes: 2),
+      lines: const [
+        OrderLine(itemId: 'cm-07', name: 'Chicken Chowmein', price: 130, quantity: 2),
+        OrderLine(itemId: 'mo-08', name: 'Chicken Tandoori Momo', price: 150, quantity: 1,
+            instructions: 'Extra spicy please'),
+      ],
     );
-    notifier.placeOrder(
+
+    notifier.seedMockOrder(
       tableNumber: '7',
-      items: [],
+      status: 'accepted',
+      ago: const Duration(minutes: 8),
+      lines: const [
+        OrderLine(itemId: 'st-05', name: 'Chilly Chicken', price: 130, quantity: 1),
+        OrderLine(itemId: 'fr-06', name: 'Chicken Fried Rice', price: 120, quantity: 1),
+        OrderLine(itemId: 'pt-02', name: 'Honey Chilli Potato', price: 100, quantity: 1),
+      ],
+    );
+
+    notifier.seedMockOrder(
+      tableNumber: '12',
+      status: 'preparing',
+      ago: const Duration(minutes: 14),
+      lines: const [
+        OrderLine(itemId: 'cb-04', name: 'Chicken Chinese Thali', price: 230, quantity: 2),
+        OrderLine(itemId: 'st-07', name: 'Chilly Paneer', price: 130, quantity: 1,
+            instructions: 'No onions'),
+        OrderLine(itemId: 'mg-04', name: 'Cheese Maggi', price: 100, quantity: 1),
+      ],
+    );
+
+    notifier.seedMockOrder(
+      tableNumber: '5',
+      status: 'received',
+      ago: const Duration(minutes: 1),
+      lines: const [
+        OrderLine(itemId: 'mo-01', name: 'Veg Steam Momo', price: 80, quantity: 1),
+        OrderLine(itemId: 'mo-02', name: 'Chicken Steam Momo', price: 100, quantity: 1),
+      ],
+    );
+
+    notifier.seedMockOrder(
+      tableNumber: '10',
+      status: 'ready',
+      ago: const Duration(minutes: 20),
+      lines: const [
+        OrderLine(itemId: 'cb-03', name: 'Veg Chinese Thali', price: 180, quantity: 1),
+        OrderLine(itemId: 'st-14', name: 'French Fries', price: 80, quantity: 1),
+      ],
     );
   }
 }
