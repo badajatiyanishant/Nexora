@@ -1,0 +1,43 @@
+{
+  "brandName": "Ching Chong",
+  "fontFamilyDisplay": "Plus Jakarta Sans",
+  "fontFamilyBody": "Inter",
+  "light": {
+    "primary": "#C8102E",
+    "primaryDark": "#8E0B20",
+    "primaryLight": "#E8394F",
+    "onPrimary": "#FFFFFF",
+    "secondary": "#FFC72C",
+    "secondaryDark": "#D3A017",
+    "secondaryLight": "#FFE082",
+    "onSecondary": "#3A2A00",
+    "background": "#FBF7F2",
+    "surface": "#FFFFFF",
+    "card": "#FFFFFF",
+    "border": "#EBE3D9",
+    "textPrimary": "#1A1614",
+    "textSecondary": "#6B6058",
+    "accent": "#1F1B18"
+  },
+  "dark": {
+    "primary": "#FF5A6E",
+    "primaryDark": "#C8102E",
+    "primaryLight": "#FF8A99",
+    "onPrimary": "#4A0010",
+    "secondary": "#FFC72C",
+    "secondaryDark": "#D3A017",
+    "secondaryLight": "#FFE082",
+    "onSecondary": "#3A2A00",
+    "background": "#141110",
+    "surface": "#1E1A18",
+    "card": "#272220",
+    "border": "#3A322E",
+    "textPrimary": "#F6F1EB",
+    "textSecondary": "#B3A79D",
+    "accent": "#FFC72C"
+  },
+  "heroGradient": ["#C8102E", "#8E0B20"],
+  "accentGradient": ["#FFC72C", "#FF8F00"],
+  "radiusScale": 1.0,
+  "logoBackdrop": "#1F1B18"
+}

@@ -1,0 +1,68 @@
+{
+  "todaysOrders": 34,
+  "todaysOrdersTrend": 12.0,
+  "pendingOrders": 8,
+  "totalRevenue": 12450,
+  "totalRevenueTrend": 18.0,
+  "averageOrderValue": 366,
+  "averageOrderValueTrend": 8.0,
+  "totalTables": 12,
+  "occupiedTables": 6,
+  "totalMenuItems": 99,
+  "totalCategories": 14,
+  "totalCustomers": 256,
+  "newCustomersToday": 23,
+  "repeatCustomerPercent": 41.5,
+  "averagePrepMinutes": 22,
+  "tableTurnoverPerDay": 3.4,
+  "revenueByDay": [
+    { "label": "Mon", "value": 9200 },
+    { "label": "Tue", "value": 8600 },
+    { "label": "Wed", "value": 10400 },
+    { "label": "Thu", "value": 11800 },
+    { "label": "Fri", "value": 15600 },
+    { "label": "Sat", "value": 18900 },
+    { "label": "Sun", "value": 12450 }
+  ],
+  "ordersByHour": [
+    { "label": "11a", "value": 2 },
+    { "label": "12p", "value": 4 },
+    { "label": "1p", "value": 7 },
+    { "label": "2p", "value": 5 },
+    { "label": "3p", "value": 2 },
+    { "label": "4p", "value": 2 },
+    { "label": "5p", "value": 3 },
+    { "label": "6p", "value": 6 },
+    { "label": "7p", "value": 11 },
+    { "label": "8p", "value": 14 },
+    { "label": "9p", "value": 12 },
+    { "label": "10p", "value": 6 }
+  ],
+  "ordersByType": [
+    { "label": "Dine In", "value": 58 },
+    { "label": "Delivery", "value": 27 },
+    { "label": "Takeaway", "value": 15 }
+  ],
+  "revenueByCategory": [
+    { "label": "Chowmein", "value": 3120 },
+    { "label": "Momos", "value": 2740 },
+    { "label": "Starters", "value": 2180 },
+    { "label": "Combos", "value": 1560 },
+    { "label": "Fried Rice", "value": 1340 },
+    { "label": "Others", "value": 1510 }
+  ],
+  "topItems": [
+    { "itemId": "cm-01", "name": "Veg Chowmein", "orders": 82, "revenue": 6560 },
+    { "itemId": "st-01", "name": "Chicken Lollipop Fried", "orders": 75, "revenue": 9750 },
+    { "itemId": "fr-01", "name": "Veg Fried Rice", "orders": 61, "revenue": 4880 },
+    { "itemId": "tk-01", "name": "Paneer Tikka", "orders": 55, "revenue": 7150 },
+    { "itemId": "st-03", "name": "Chicken Manchurian", "orders": 50, "revenue": 6500 },
+    { "itemId": "mo-02", "name": "Chicken Steam Momo", "orders": 47, "revenue": 4700 },
+    { "itemId": "pt-02", "name": "Honey Chilli Potato", "orders": 43, "revenue": 4300 }
+  ],
+  "recentReviews": [
+    { "author": "Rahul M.", "rating": 5, "comment": "Best momos in Raja Park. The tandoori ones are unreal.", "when": "2 hours ago" },
+    { "author": "Ananya S.", "rating": 5, "comment": "Chilly paneer was perfectly done and the service was quick.", "when": "Yesterday" },
+    { "author": "Vikram J.", "rating": 4, "comment": "Great thali for the price. Would like more seating on the terrace.", "when": "2 days ago" }
+  ]
+}

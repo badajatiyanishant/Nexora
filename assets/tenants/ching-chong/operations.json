@@ -1,0 +1,99 @@
+{
+  "tables": [
+    { "id": "T1", "label": "Table 1", "seats": 4, "zone": "Ground Floor", "status": "occupied", "currentOrderId": "1021", "occupiedSince": "19:42" },
+    { "id": "T2", "label": "Table 2", "seats": 2, "zone": "Ground Floor", "status": "occupied", "currentOrderId": "1022", "occupiedSince": "19:58" },
+    { "id": "T3", "label": "Table 3", "seats": 4, "zone": "Ground Floor", "status": "occupied", "currentOrderId": "1024", "occupiedSince": "20:14" },
+    { "id": "T4", "label": "Table 4", "seats": 4, "zone": "Ground Floor", "status": "available" },
+    { "id": "T5", "label": "Table 5", "seats": 6, "zone": "Ground Floor", "status": "occupied", "currentOrderId": "1020", "occupiedSince": "19:30" },
+    { "id": "T6", "label": "Table 6", "seats": 2, "zone": "Ground Floor", "status": "available" },
+    { "id": "T7", "label": "Table 7", "seats": 4, "zone": "Terrace", "status": "occupied", "currentOrderId": "1023", "occupiedSince": "20:05" },
+    { "id": "T8", "label": "Table 8", "seats": 4, "zone": "Terrace", "status": "reserved", "reservedFor": "Sharma · 21:00" },
+    { "id": "T9", "label": "Table 9", "seats": 6, "zone": "Terrace", "status": "occupied", "currentOrderId": "1019", "occupiedSince": "19:15" },
+    { "id": "T10", "label": "Table 10", "seats": 2, "zone": "Terrace", "status": "available" },
+    { "id": "T11", "label": "Table 11", "seats": 8, "zone": "Family Lounge", "status": "reserved", "reservedFor": "Gupta · 21:30" },
+    { "id": "T12", "label": "Table 12", "seats": 4, "zone": "Family Lounge", "status": "available" }
+  ],
+  "orders": [
+    {
+      "id": "1024", "code": "#1024", "tableId": "T3", "type": "dineIn", "status": "pending",
+      "placedAt": "20:14", "customerName": "Rahul Meena", "customerPhone": "+91 98280 11234",
+      "lines": [
+        { "itemId": "cm-07", "name": "Chicken Chowmein", "quantity": 2, "price": 130 },
+        { "itemId": "mo-08", "name": "Chicken Tandoori Momo", "quantity": 1, "price": 150 },
+        { "itemId": "pt-02", "name": "Honey Chilli Potato", "quantity": 1, "price": 100 }
+      ],
+      "note": "Less spicy for the momos please"
+    },
+    {
+      "id": "1023", "code": "#1023", "tableId": "T7", "type": "dineIn", "status": "preparing",
+      "placedAt": "20:05", "customerName": "Ananya Singh", "customerPhone": "+91 90015 88210",
+      "lines": [
+        { "itemId": "cm-01", "name": "Veg Chowmein", "quantity": 2, "price": 80 },
+        { "itemId": "st-07", "name": "Chilly Paneer", "quantity": 2, "price": 130 }
+      ]
+    },
+    {
+      "id": "1022", "code": "#1022", "tableId": "T2", "type": "dineIn", "status": "preparing",
+      "placedAt": "19:58", "customerName": "Vikram Joshi", "customerPhone": "+91 94140 55672",
+      "lines": [
+        { "itemId": "cb-03", "name": "Veg Chinese Thali", "quantity": 2, "price": 180 },
+        { "itemId": "mo-01", "name": "Veg Steam Momo", "quantity": 1, "price": 80 },
+        { "itemId": "st-14", "name": "French Fries", "quantity": 1, "price": 80 }
+      ]
+    },
+    {
+      "id": "1021", "code": "#1021", "tableId": "T1", "type": "dineIn", "status": "ready",
+      "placedAt": "19:42", "customerName": "Priya Agarwal", "customerPhone": "+91 99290 33418",
+      "lines": [
+        { "itemId": "cb-04", "name": "Chicken Chinese Thali", "quantity": 2, "price": 230 },
+        { "itemId": "st-05", "name": "Chilly Chicken", "quantity": 1, "price": 130 },
+        { "itemId": "fr-06", "name": "Chicken Fried Rice", "quantity": 1, "price": 120 },
+        { "itemId": "ch-02", "name": "Chicken Chouspy", "quantity": 1, "price": 130 },
+        { "itemId": "pt-01", "name": "Chilli Potato", "quantity": 1, "price": 90 }
+      ]
+    },
+    {
+      "id": "1020", "code": "#1020", "tableId": "T5", "type": "dineIn", "status": "ready",
+      "placedAt": "19:30", "customerName": "Karan Bhatia", "customerPhone": "+91 82330 77145",
+      "lines": [
+        { "itemId": "mo-02", "name": "Chicken Steam Momo", "quantity": 2, "price": 100 },
+        { "itemId": "mg-04", "name": "Cheese Maggi", "quantity": 1, "price": 100 }
+      ]
+    },
+    {
+      "id": "1019", "code": "#1019", "tableId": "T9", "type": "dineIn", "status": "served",
+      "placedAt": "19:15", "customerName": "Neha Chauhan", "customerPhone": "+91 70140 29863",
+      "lines": [
+        { "itemId": "pz-05", "name": "Double Cheese Pizza", "quantity": 2, "price": 150 },
+        { "itemId": "ps-03", "name": "White Sauce Pasta", "quantity": 1, "price": 130 },
+        { "itemId": "bg-02", "name": "Cheese Burger", "quantity": 2, "price": 90 }
+      ]
+    },
+    {
+      "id": "1018", "code": "#1018", "type": "delivery", "status": "served",
+      "placedAt": "19:02", "customerName": "Aditya Rathore", "customerPhone": "+91 96020 41177",
+      "deliveryAddress": "B-42, Ganesh Marg, Bapu Nagar, Jaipur",
+      "lines": [
+        { "itemId": "cm-12", "name": "Chicken Schezwan Noodles", "quantity": 2, "price": 150 },
+        { "itemId": "st-01", "name": "Chicken Lollipop Fried", "quantity": 1, "price": 130 }
+      ]
+    },
+    {
+      "id": "1017", "code": "#1017", "type": "takeaway", "status": "served",
+      "placedAt": "18:47", "customerName": "Simran Kaur", "customerPhone": "+91 78770 90223",
+      "lines": [
+        { "itemId": "mo-05", "name": "Veg Honey Chilly Momo", "quantity": 2, "price": 130 },
+        { "itemId": "ch-01", "name": "Veg Chouspy", "quantity": 1, "price": 110 }
+      ]
+    },
+    {
+      "id": "1016", "code": "#1016", "type": "delivery", "status": "cancelled",
+      "placedAt": "18:31", "customerName": "Mohit Sharma", "customerPhone": "+91 93140 66890",
+      "deliveryAddress": "C-11, Tilak Nagar, Jaipur",
+      "lines": [
+        { "itemId": "pz-07", "name": "Chicken Pizza", "quantity": 1, "price": 170 }
+      ],
+      "note": "Cancelled by customer — ordered by mistake"
+    }
+  ]
+}

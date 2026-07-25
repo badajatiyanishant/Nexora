@@ -1,0 +1,56 @@
+{
+  "id": "ching-chong",
+  "slug": "ching-chong",
+  "name": "Ching Chong",
+  "legalName": "Ching Chong Restaurant",
+  "tagline": "Chinese Food Speciality",
+  "subtitle": "Chinese Food Speciality",
+  "description": "Hand-tossed noodles, steamed momos and tandoori tikka made fresh to order. A neighbourhood favourite in Raja Park for late-night Chinese cravings.",
+  "logo": "assets/tenants/ching-chong/brand/logo.png",
+  "cuisines": ["Chinese", "Tibetan", "Fast Food", "Italian"],
+  "rating": 4.6,
+  "ratingCount": 1284,
+  "priceForTwo": 350,
+  "ownerName": "Chef Nepal",
+  "contact": {
+    "phonePrimary": "+91 97994 26648",
+    "phoneSecondary": "+91 77918 02353",
+    "email": "hello@chingchong.example",
+    "instagram": "@chingchong.jaipur"
+  },
+  "address": {
+    "line1": "Shop No. 14, Pitam Ji Ki Gali No. 5",
+    "line2": "Vyas Marg, Raja Park",
+    "city": "Jaipur",
+    "state": "Rajasthan",
+    "postalCode": "302004",
+    "landmark": "Opposite Raja Park Metro Gate 2"
+  },
+  "service": {
+    "dineIn": true,
+    "takeaway": true,
+    "delivery": true,
+    "deliveryRadiusKm": 2.0,
+    "deliveryMinimumOrder": 300,
+    "deliveryFee": 0,
+    "freeDeliveryNote": "Free home delivery up to 2 kms on orders above ₹300",
+    "averagePrepMinutes": 22,
+    "packagingCharge": 15,
+    "taxPercent": 5.0
+  },
+  "hours": [
+    { "day": "Monday", "opensAt": "11:00", "closesAt": "23:00" },
+    { "day": "Tuesday", "opensAt": "11:00", "closesAt": "23:00" },
+    { "day": "Wednesday", "opensAt": "11:00", "closesAt": "23:00" },
+    { "day": "Thursday", "opensAt": "11:00", "closesAt": "23:00" },
+    { "day": "Friday", "opensAt": "11:00", "closesAt": "23:30" },
+    { "day": "Saturday", "opensAt": "11:00", "closesAt": "23:30" },
+    { "day": "Sunday", "opensAt": "12:00", "closesAt": "23:00" }
+  ],
+  "highlights": [
+    { "icon": "delivery", "label": "Free delivery", "value": "Within 2 km" },
+    { "icon": "timer", "label": "Avg. prep time", "value": "22 min" },
+    { "icon": "star", "label": "Rated", "value": "4.6 / 5" },
+    { "icon": "menu", "label": "Dishes", "value": "99 items" }
+  ]
+}
