@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../models/menu.dart';
-
 /// A single line in an order (one dish with quantity).
 @immutable
 class OrderLine {

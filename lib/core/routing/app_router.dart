@@ -8,7 +8,11 @@ import '../../features/auth/screens/landing_screen.dart';
 import '../../features/auth/screens/splash_screen.dart';
 import '../../features/customer/screens/cart_page.dart';
 import '../../features/customer/screens/customer_menu_screen.dart';
+import '../../features/customer/screens/order_success_screen.dart';
+import '../../features/customer/screens/order_tracking_screen.dart';
 import '../../features/customer/screens/table_scanner_screen.dart';
+import '../../features/kitchen/screens/kitchen_screen.dart';
+import '../../features/owner/screens/owner_dashboard.dart';
 import '../../shared/widgets/placeholder_screen.dart';
 import '../../shared/widgets/widgets.dart';
 import '../constants/app_constants.dart';
@@ -88,10 +92,15 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '${RoutePaths.restaurant}/${RoutePaths.orderTracking}',
             name: RoutePaths.nOrderTracking,
-            builder: (context, state) => const PlaceholderScreen(
-              title: 'Order Tracking',
-              milestone: 'Milestone 2',
-              icon: Icons.delivery_dining_rounded,
+            builder: (context, state) => OrderTrackingScreen(
+              orderId: state.pathParameters['orderId'] ?? '',
+            ),
+          ),
+          GoRoute(
+            path: '${RoutePaths.restaurant}/order/:orderId/success',
+            name: 'order-success',
+            builder: (context, state) => OrderSuccessScreen(
+              orderId: state.pathParameters['orderId'] ?? '',
             ),
           ),
         ],
@@ -100,11 +109,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: RoutePaths.kitchen,
         name: RoutePaths.nKitchen,
-        builder: (context, state) => const PlaceholderScreen(
-          title: 'Kitchen Display',
-          milestone: 'Milestone 4',
-          icon: Icons.soup_kitchen_rounded,
-        ),
+        builder: (context, state) => const KitchenScreen(),
       ),
 
       // Admin — redirects to the dashboard so /admin is always valid.
@@ -118,11 +123,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: RoutePaths.adminDashboard,
             name: RoutePaths.nAdminDashboard,
-            builder: (context, state) => const PlaceholderScreen(
-              title: 'Restaurant Dashboard',
-              milestone: 'Milestone 3',
-              icon: Icons.dashboard_rounded,
-            ),
+            builder: (context, state) => const OwnerDashboard(),
           ),
           GoRoute(
             path: RoutePaths.adminMenu,

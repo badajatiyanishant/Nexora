@@ -175,7 +175,7 @@ class CartPage extends ConsumerWidget {
                             child: FilledButton(
                               onPressed: () {
                                 final tableNumber =
-                                    ref.read(tableNumberProvider) ?? '1';
+                                    ref.read(tableNumberProvider) ?? '8';
                                 final order = ref
                                     .read(ordersProvider.notifier)
                                     .placeOrder(
@@ -183,15 +183,10 @@ class CartPage extends ConsumerWidget {
                                       items: cart.items,
                                     );
                                 cartNotifier.clear();
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Order ${order.id} placed! 🎉 Table $tableNumber',
-                                    ),
-                                    backgroundColor: primary,
-                                  ),
+                                // Navigate to order success
+                                context.go(
+                                  '/r/ching-chong/order/${order.id}/success',
                                 );
-                                context.pop();
                               },
                               style: FilledButton.styleFrom(
                                 backgroundColor: primary,
