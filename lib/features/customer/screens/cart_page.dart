@@ -132,19 +132,16 @@ class CartPage extends ConsumerWidget {
                         children: [
                           // Subtotal
                           _SummaryRow(
-                            label: 'Subtotal (${cart.itemCount} items)',
+                            label: 'Items Total (${cart.itemCount})',
                             value: '₹${cart.subtotal}',
                           ),
-                          const SizedBox(height: 8),
-                          _SummaryRow(
-                            label: 'Tax (5%)',
-                            value: '₹${(cart.subtotal * 0.05).round()}',
-                          ),
-                          const SizedBox(height: 8),
-                          _SummaryRow(
-                            label: 'Dine-In',
-                            value: 'FREE',
-                            valueColor: const Color(0xFF2E7D32),
+                          const SizedBox(height: 4),
+                          Text(
+                            'All prices are inclusive of applicable taxes.',
+                            style: theme.textTheme.bodySmall?.copyWith(
+                              color: scheme.onSurfaceVariant,
+                              fontSize: 11,
+                            ),
                           ),
                           const SizedBox(height: 12),
                           Container(
@@ -155,12 +152,12 @@ class CartPage extends ConsumerWidget {
                           Row(
                             children: [
                               Text(
-                                'Total',
+                                'Grand Total',
                                 style: theme.textTheme.titleLarge,
                               ),
                               const Spacer(),
                               Text(
-                                '₹${cart.subtotal + (cart.subtotal * 0.05).round()}',
+                                '₹${cart.subtotal}',
                                 style: AppTypography.numeric(
                                   size: 24,
                                   weight: FontWeight.w800,
@@ -175,11 +172,10 @@ class CartPage extends ConsumerWidget {
                             height: 56,
                             child: FilledButton(
                               onPressed: () {
-                                // For demo, just show a snackbar
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
-                                      'Order placed! 🎉 Tracking coming in Milestone 2.',
+                                      'Order placed! 🎉 Your food is being prepared.',
                                     ),
                                     backgroundColor: primary,
                                   ),
@@ -344,12 +340,10 @@ class _SummaryRow extends StatelessWidget {
   const _SummaryRow({
     required this.label,
     required this.value,
-    this.valueColor,
   });
 
   final String label;
   final String value;
-  final Color? valueColor;
 
   @override
   Widget build(BuildContext context) {
@@ -366,7 +360,7 @@ class _SummaryRow extends StatelessWidget {
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w600,
-            color: valueColor ?? scheme.onSurface,
+            color: scheme.onSurface,
           ),
         ),
       ],

@@ -97,7 +97,7 @@ class _SplashScreenState extends State<SplashScreen>
       body: DecoratedBox(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFFB71C1C), AppColors.primary, Color(0xFFE64A19)],
+            colors: [Color(0xFF8E0B20), Color(0xFFC8102E), Color(0xFFE8394F)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -210,14 +210,22 @@ class _BrandMark extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          ShaderMask(
-            shaderCallback: (bounds) => AppColors.primaryGradient.createShader(
-              bounds,
-            ),
-            child: const Icon(
-              Icons.restaurant_menu_rounded,
-              size: 54,
-              color: Colors.white,
+          ClipRRect(
+            borderRadius: AppRadius.brXxl,
+            child: Image.asset(
+              'assets/tenants/ching-chong/brand/logo.png',
+              width: 80,
+              height: 80,
+              fit: BoxFit.cover,
+              errorBuilder: (_, _, _) => ShaderMask(
+                shaderCallback: (bounds) =>
+                    AppColors.primaryGradient.createShader(bounds),
+                child: const Icon(
+                  Icons.restaurant_menu_rounded,
+                  size: 54,
+                  color: Colors.white,
+                ),
+              ),
             ),
           ),
           AnimatedBuilder(

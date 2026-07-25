@@ -251,7 +251,7 @@ class _PromotionalBanner extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '🎉 Grand Opening Offer',
+                    '🎉 Welcome to Ching Chong',
                     style: theme.textTheme.titleMedium?.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.w700,
@@ -259,7 +259,7 @@ class _PromotionalBanner extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '20% OFF on all orders above ₹300',
+                    '20% OFF on dine-in orders above ₹300',
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: Colors.white.withValues(alpha: 0.85),
                     ),

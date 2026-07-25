@@ -1,11 +1,11 @@
 {
-    "name": "Nexora Orders",
-    "short_name": "Nexora",
+    "name": "Ching Chong | Order Online",
+    "short_name": "Ching Chong",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#FFF8E1",
-    "theme_color": "#D50000",
-    "description": "Smart Ordering for Modern Restaurants.",
+    "background_color": "#FBF7F2",
+    "theme_color": "#C8102E",
+    "description": "Ching Chong - Authentic Indo-Chinese cuisine. Order online.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
