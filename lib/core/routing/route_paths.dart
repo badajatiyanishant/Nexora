@@ -12,6 +12,7 @@ class RoutePaths {
 
   // Staff auth
   static const String login = '/login';
+  static const String scanTable = '/scan-table';
 
   // Customer — nested under the tenant shell
   static const String restaurant = '/r/:slug';
@@ -37,6 +38,7 @@ class RoutePaths {
   static const String nSplash = 'splash';
   static const String nLanding = 'landing';
   static const String nLogin = 'login';
+  static const String nScanTable = 'scan-table';
   static const String nMenu = 'customer-menu';
   static const String nCart = 'customer-cart';
   static const String nCheckout = 'customer-checkout';

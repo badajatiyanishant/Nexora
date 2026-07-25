@@ -4,8 +4,10 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/app_typography.dart';
+import '../../../shared/providers/orders_provider.dart';
 import '../providers/cart_provider.dart';
 import '../providers/theme_provider.dart';
+import 'table_scanner_screen.dart';
 
 /// Full cart view with item list, quantity controls, order summary, and
 /// a checkout button.
@@ -172,14 +174,24 @@ class CartPage extends ConsumerWidget {
                             height: 56,
                             child: FilledButton(
                               onPressed: () {
+                                final tableNumber =
+                                    ref.read(tableNumberProvider) ?? '1';
+                                final order = ref
+                                    .read(ordersProvider.notifier)
+                                    .placeOrder(
+                                      tableNumber: tableNumber,
+                                      items: cart.items,
+                                    );
+                                cartNotifier.clear();
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
-                                      'Order placed! 🎉 Your food is being prepared.',
+                                      'Order ${order.id} placed! 🎉 Table $tableNumber',
                                     ),
                                     backgroundColor: primary,
                                   ),
                                 );
+                                context.pop();
                               },
                               style: FilledButton.styleFrom(
                                 backgroundColor: primary,

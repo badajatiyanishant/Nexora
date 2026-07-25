@@ -8,6 +8,7 @@ import '../../features/auth/screens/landing_screen.dart';
 import '../../features/auth/screens/splash_screen.dart';
 import '../../features/customer/screens/cart_page.dart';
 import '../../features/customer/screens/customer_menu_screen.dart';
+import '../../features/customer/screens/table_scanner_screen.dart';
 import '../../shared/widgets/placeholder_screen.dart';
 import '../../shared/widgets/widgets.dart';
 import '../constants/app_constants.dart';
@@ -50,6 +51,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           milestone: 'Milestone 5',
           icon: Icons.lock_outline_rounded,
         ),
+      ),
+      GoRoute(
+        path: RoutePaths.scanTable,
+        name: RoutePaths.nScanTable,
+        builder: (context, state) => const TableScannerScreen(),
       ),
 
       // Customer PWA — every route below inherits the resolved restaurant.

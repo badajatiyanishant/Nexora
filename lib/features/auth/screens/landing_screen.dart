@@ -116,12 +116,11 @@ class LandingScreen extends StatelessWidget {
 
                   const SizedBox(height: AppSpacing.xxxl),
 
-                  // Enter menu button
+                  // Scan QR button (primary)
                   FadeInUp(
                     delay: const Duration(milliseconds: 360),
                     child: GestureDetector(
-                      onTap: () =>
-                          context.go(RoutePaths.menuFor(restaurantSlug)),
+                      onTap: () => context.go(RoutePaths.scanTable),
                       child: Container(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 48,
@@ -142,19 +141,62 @@ class LandingScreen extends StatelessWidget {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
+                            const Icon(
+                              Icons.qr_code_scanner_rounded,
+                              color: Color(0xFF1A1614),
+                              size: 22,
+                            ),
+                            const SizedBox(width: AppSpacing.sm),
                             Text(
-                              'VIEW MENU',
+                              'SCAN TABLE QR',
                               style: theme.textTheme.labelLarge?.copyWith(
                                 color: const Color(0xFF1A1614),
                                 fontSize: 16,
                                 letterSpacing: 1.2,
                               ),
                             ),
-                            const SizedBox(width: AppSpacing.sm),
-                            const Icon(
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: AppSpacing.md),
+
+                  // Browse menu (secondary)
+                  FadeInUp(
+                    delay: const Duration(milliseconds: 420),
+                    child: GestureDetector(
+                      onTap: () =>
+                          context.go(RoutePaths.menuFor(restaurantSlug)),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 36,
+                          vertical: 14,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.15),
+                          borderRadius: AppRadius.brMd,
+                          border: Border.all(
+                            color: Colors.white.withValues(alpha: 0.3),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              'BROWSE MENU',
+                              style: theme.textTheme.labelLarge?.copyWith(
+                                color: Colors.white,
+                                fontSize: 14,
+                                letterSpacing: 1,
+                              ),
+                            ),
+                            const SizedBox(width: AppSpacing.xs),
+                            Icon(
                               Icons.arrow_forward_rounded,
-                              color: Color(0xFF1A1614),
-                              size: 20,
+                              color: Colors.white.withValues(alpha: 0.8),
+                              size: 18,
                             ),
                           ],
                         ),

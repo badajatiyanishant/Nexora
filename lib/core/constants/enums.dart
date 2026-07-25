@@ -7,11 +7,12 @@ import '../theme/app_colors.dart';
 /// The kitchen advances an order through these states and the customer tracker
 /// renders the same values, so both products stay in lockstep.
 enum OrderStatus {
-  pending('Pending', 'New order awaiting acceptance'),
-  preparing('Preparing', 'The kitchen is working on it'),
-  ready('Ready', 'Ready to be served'),
-  served('Served', 'Delivered to the table'),
-  cancelled('Cancelled', 'This order was cancelled');
+  received('Received', 'Order placed'),
+  accepted('Accepted', 'Kitchen acknowledged'),
+  preparing('Preparing', 'Being cooked now'),
+  ready('Ready', 'Pickup at counter'),
+  delivered('Delivered', 'Served to table'),
+  cancelled('Cancelled', 'Order was cancelled');
 
   const OrderStatus(this.label, this.description);
 
@@ -19,39 +20,43 @@ enum OrderStatus {
   final String description;
 
   Color get color => switch (this) {
-        OrderStatus.pending => AppColors.statusPending,
+        OrderStatus.received => AppColors.statusPending,
+        OrderStatus.accepted => AppColors.statusPreparing,
         OrderStatus.preparing => AppColors.statusPreparing,
         OrderStatus.ready => AppColors.statusReady,
-        OrderStatus.served => AppColors.statusServed,
+        OrderStatus.delivered => AppColors.statusServed,
         OrderStatus.cancelled => AppColors.statusCancelled,
       };
 
   IconData get icon => switch (this) {
-        OrderStatus.pending => Icons.schedule_rounded,
+        OrderStatus.received => Icons.receipt_long_rounded,
+        OrderStatus.accepted => Icons.check_circle_outline_rounded,
         OrderStatus.preparing => Icons.local_fire_department_rounded,
-        OrderStatus.ready => Icons.room_service_rounded,
-        OrderStatus.served => Icons.check_circle_rounded,
+        OrderStatus.ready => Icons.notifications_active_rounded,
+        OrderStatus.delivered => Icons.done_all_rounded,
         OrderStatus.cancelled => Icons.cancel_rounded,
       };
 
   /// Statuses the kitchen actively works, in queue order.
   static List<OrderStatus> get activeQueue => const [
-        OrderStatus.pending,
+        OrderStatus.received,
+        OrderStatus.accepted,
         OrderStatus.preparing,
         OrderStatus.ready,
       ];
 
   /// The next step in the happy path, or null at a terminal state.
   OrderStatus? get next => switch (this) {
-        OrderStatus.pending => OrderStatus.preparing,
+        OrderStatus.received => OrderStatus.accepted,
+        OrderStatus.accepted => OrderStatus.preparing,
         OrderStatus.preparing => OrderStatus.ready,
-        OrderStatus.ready => OrderStatus.served,
-        OrderStatus.served || OrderStatus.cancelled => null,
+        OrderStatus.ready => OrderStatus.delivered,
+        OrderStatus.delivered || OrderStatus.cancelled => null,
       };
 
   static OrderStatus fromName(String? value) => OrderStatus.values.firstWhere(
         (s) => s.name == value,
-        orElse: () => OrderStatus.pending,
+        orElse: () => OrderStatus.received,
       );
 }
 
@@ -95,8 +100,7 @@ enum TableStatus {
 /// How the diner is taking the order.
 enum OrderType {
   dineIn('Dine In', Icons.restaurant_rounded),
-  takeaway('Takeaway', Icons.shopping_bag_rounded),
-  delivery('Delivery', Icons.delivery_dining_rounded);
+  takeaway('Takeaway', Icons.shopping_bag_rounded);
 
   const OrderType(this.label, this.icon);
 

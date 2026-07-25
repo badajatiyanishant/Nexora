@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../core/routing/route_paths.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../shared/models/restaurant.dart';
 import '../providers/theme_provider.dart';
+import '../screens/table_scanner_screen.dart';
 
 /// Full-bleed hero section at the top of the customer menu.
 ///
 /// Displays the restaurant cover, logo, name, rating, cuisines, highlights,
 /// and open/closed status. Uses the tenant theme for all colours.
-class RestaurantHero extends StatelessWidget {
+class RestaurantHero extends ConsumerWidget {
   const RestaurantHero({
     super.key,
     required this.restaurant,
@@ -23,10 +25,11 @@ class RestaurantHero extends StatelessWidget {
   final VoidCallback onSearchTap;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
     final screenWidth = MediaQuery.sizeOf(context).width;
     final isMobile = screenWidth < 600;
+    final tableNumber = ref.watch(tableNumberProvider);
 
     return SliverToBoxAdapter(
       child: Column(
