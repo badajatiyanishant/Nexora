@@ -1,108 +1,184 @@
-# Ching Chong Ordering App — Worklog
+# Ching Chong — QR-Based Restaurant Ordering System
 
 ## Deployment
 
 - **Public URL:** https://badajatiyanishant.github.io/Nexora/#/
 - **Menu URL:** https://badajatiyanishant.github.io/Nexora/#/r/ching-chong/menu
-- **Method:** GitHub Actions → GitHub Pages
+- **Kitchen URL:** https://badajatiyanishant.github.io/Nexora/#/kitchen
+- **Admin URL:** https://badajatiyanishant.github.io/Nexora/#/admin/dashboard
+- **Method:** GitHub Actions → GitHub Pages (auto-deploy on push)
 - **GitHub repo:** https://github.com/badajatiyanishant/Nexora
-- **Pages setting:** Source = GitHub Actions (Settings → Pages)
+- **Pages setting:** Source = GitHub Actions
 
 ## Completed
 
-### Branding & Identity
-- Browser title: "Ching Chong | Order Online"
-- Splash screen: Ching Chong logo + brand gradient (#C8102E)
-- Landing page: full Ching Chong branded welcome with restaurant info
-- PWA manifest: Ching Chong name and description
-- All "Nexora" user-visible text removed
-- Restaurant-specific description: "Authentic Indo-Chinese cuisine..."
-- No delivery terminology — all replaced with dine-in language
+### Customer Flow (10 screens)
+1. **Splash** — Ching Chong logo animation with brand gradient
+2. **Landing** — Restaurant branding, "Scan Table QR" + "Browse Menu" buttons
+3. **QR Scanner** — Mock scanner with animated frame, torch toggle, corner accents, scan line
+4. **Restaurant Home** — Hero with cover, logo, table chip, categories, food cards, search
+5. **Food Detail** — Bottom sheet with large image, ingredients, spice level, quantity selector
+6. **Cart** — GST-inclusive pricing, quantity controls, special instructions, place order
+7. **Order Success** — Animated checkmark, order #, table, prep time
+8. **Order Tracking** — Animated timeline (Received → Accepted → Preparing → Ready → Delivered)
+9. **Search** — Category filters, veg-only toggle, instant filtering
+10. **Floating Cart** — Animated bottom bar with item count and total
 
-### Customer Screens
-- Restaurant hero with cover image, logo, rating, prep time, price
-- Sticky category chips with horizontal scrolling
-- Food cards with image, badges (Bestseller/Featured), veg/non-veg, rating, prep time
-- Product detail bottom sheet with large image, ingredients, spice level
-- Floating animated cart bar with item count and total
-- Search screen with category filters and veg-only toggle
-- Cart page with quantity controls and order summary
+### Kitchen Panel
+- Three-column layout: New / Preparing / Ready / Completed
+- Order cards with table number, items, special instructions, elapsed time
+- Accept/Advance/Complete status buttons
+- Tablet-optimized design
 
-### Pricing
-- GST-inclusive pricing: menu prices include all taxes
-- "All prices are inclusive of applicable taxes" notice in cart
-- No separate tax calculation lines
-- Grand total = items total (no hidden charges)
+### Owner Dashboard
+- Sidebar navigation (Dashboard / Menu / QR Codes / Settings)
+- Metric cards (orders, revenue, active, completed)
+- Popular dishes section
+- Recent orders list
+- Menu management with category toggles and item counts
+- Restaurant settings (info, timings)
+- Kitchen quick-access link
 
-### Data Layer
+### Backend Infrastructure (Firestore-ready)
+- Abstract repository interfaces: Restaurant, Menu, Order, Table
+- RestaurantOrder + OrderLine models
+- OrdersNotifier with placeOrder, advanceOrder, cancelOrder
+- Updated OrderStatus: received → accepted → preparing → ready → delivered
+- Firestore schema document with planned collections
 - TenantRepository loads from bundled JSON assets
-- No hardcoded restaurant data
-- Restaurant, Menu, Theme all from JSON files
-- Riverpod providers with correct dependency declarations
+- All providers with correct Riverpod dependencies
 
-### Responsiveness
-- Hero section: responsive height (38% mobile, 42% desktop)
-- Product detail sheet: responsive image height (32% of screen)
-- Food cards: Flexible wrapping prevents RenderFlex overflow on 360px
-- Floating cart bar: overflow protection on subtotal text
-- Category chips: horizontal scroll, sticky header
-- All screens use Responsive utility for breakpoints
+### Design & Quality
+- Ching Chong branding everywhere (logo, colors, text)
+- No Nexora references in user-visible code
+- No delivery terminology (all replaced with dine-in)
+- GST-inclusive pricing (no tax calculations)
+- Hash routing for GitHub Pages
+- Responsive hero (38%/42% of screen height)
+- Responsive product detail sheet (32% of screen)
+- Flexible wrapping prevents RenderFlex overflow on 360px
+- Overflow protection on floating cart subtotal
+- Material 3 design system with premium shadows
+- PWA manifest with Ching Chong branding
 
-### Quality
-- flutter analyze: No issues found
-- flutter build web --release: succeeds
-- Hash routing for GitHub Pages compatibility
-- GitHub Actions workflow for auto-deploy on push
+## Files Modified
 
-## Files Changed (customer module)
-
+### Customer Module
 ```
-lib/core/constants/app_constants.dart          — Brand strings
-lib/core/routing/app_router.dart               — Hash routing, real screen wiring
-lib/features/auth/screens/landing_screen.dart   — Ching Chong welcome page
-lib/features/auth/screens/splash_screen.dart    — Ching Chong splash
-lib/features/customer/data/tenant_repository.dart — JSON asset loader
-lib/features/customer/providers/cart_provider.dart — Cart state
-lib/features/customer/providers/menu_provider.dart — Menu data
-lib/features/customer/providers/restaurant_provider.dart — Restaurant data
-lib/features/customer/providers/theme_provider.dart — Tenant theme
-lib/features/customer/screens/cart_page.dart — Cart with GST-inclusive pricing
-lib/features/customer/screens/customer_menu_screen.dart — Main menu
-lib/features/customer/screens/search_screen.dart — Search
-lib/features/customer/widgets/category_chips_bar.dart — Sticky chips
-lib/features/customer/widgets/floating_cart_bar.dart — Floating cart
-lib/features/customer/widgets/food_card.dart — Food item card
-lib/features/customer/widgets/product_detail_sheet.dart — Product details
-lib/features/customer/widgets/restaurant_hero.dart — Hero section
-pubspec.yaml — Assets, flutter_web_plugins
-web/index.html — Browser title, meta
-web/manifest.json — PWA branding
-.github/workflows/deploy.yml — GitHub Actions deploy
+lib/features/customer/data/tenant_repository.dart
+lib/features/customer/providers/cart_provider.dart
+lib/features/customer/providers/menu_provider.dart
+lib/features/customer/providers/restaurant_provider.dart
+lib/features/customer/providers/theme_provider.dart
+lib/features/customer/screens/cart_page.dart
+lib/features/customer/screens/customer_menu_screen.dart
+lib/features/customer/screens/order_success_screen.dart
+lib/features/customer/screens/order_tracking_screen.dart
+lib/features/customer/screens/search_screen.dart
+lib/features/customer/screens/table_scanner_screen.dart
+lib/features/customer/widgets/category_chips_bar.dart
+lib/features/customer/widgets/floating_cart_bar.dart
+lib/features/customer/widgets/food_card.dart
+lib/features/customer/widgets/product_detail_sheet.dart
+lib/features/customer/widgets/restaurant_hero.dart
 ```
+
+### Kitchen Module
+```
+lib/features/kitchen/screens/kitchen_screen.dart
+```
+
+### Owner Module
+```
+lib/features/owner/screens/owner_dashboard.dart
+```
+
+### Auth Module
+```
+lib/features/auth/screens/landing_screen.dart
+lib/features/auth/screens/splash_screen.dart
+```
+
+### Shared
+```
+lib/shared/models/order.dart
+lib/shared/providers/orders_provider.dart
+lib/shared/repositories/restaurant_repository.dart
+lib/shared/repositories/menu_repository.dart
+lib/shared/repositories/order_repository.dart
+lib/shared/repositories/table_repository.dart
+lib/firebase/firestore_schema.dart
+```
+
+### Core
+```
+lib/core/constants/app_constants.dart
+lib/core/constants/enums.dart
+lib/core/routing/app_router.dart
+lib/core/routing/route_paths.dart
+```
+
+### Config
+```
+pubspec.yaml
+web/index.html
+web/manifest.json
+.github/workflows/deploy.yml
+WORKLOG.md
+```
+
+## Git Commits (this session)
+1. `feat: customer ordering UI + GitHub Pages deployment`
+2. `fix: match Flutter version in CI to local (3.44.x)`
+3. `fix: clean analyzer, remove delivery refs, add flutter_web_plugins dep`
+4. `feat: Ching Chong branding + GST-inclusive pricing`
+5. `fix: responsive overflow fixes + responsive hero/sheet heights`
+6. `feat: data-driven offer cards + WORKLOG.md`
+7. `feat: order model + orders provider (mock, in-memory)`
+8. `feat: complete customer + kitchen + owner flow (UI-only, mock data)`
+9. `fix: QR scanner flashlight toggle with animation and lifecycle`
+10. `feat: repository abstractions + Firestore schema + shared_preferences`
 
 ## Remaining TODOs
 
-- [ ] Bottom navigation bar (Home / Menu / Cart / Profile)
-- [ ] Table-specific ordering (QR code → table number)
-- [ ] Order tracking screen
-- [ ] Checkout with order type selection (Dine-In / Takeaway)
-- [ ] Offline support / service worker
+### High Priority
+- [ ] Firebase integration (needs project credentials)
+- [ ] Firestore realtime sync for orders
+- [ ] Real QR code generation (table URLs)
+- [ ] Cart persistence with SharedPreferences
+- [ ] Dark mode support
+- [ ] PWA service worker for offline support
+- [ ] Custom favicon and PWA icons
+
+### Medium Priority
 - [ ] Push notifications for order updates
-- [ ] Payment integration (UPI / card)
-- [ ] Loyalty / rewards program
-- [ ] Table reservation
-- [ ] Multi-language support (Hindi / English)
-- [ ] Dark mode toggle
-- [ ] Admin dashboard (Milestone 3)
-- [ ] Kitchen display (Milestone 4)
-- [ ] Firebase integration (Milestone 5)
-- [ ] Custom PWA icons with Ching Chong branding
-- [ ] Custom favicon with Ching Chong logo
+- [ ] Sound/vibration when new order arrives in kitchen
+- [ ] Table management (occupied/available status)
+- [ ] Real-time table status on customer screens
+- [ ] Special instructions per item in food detail
+- [ ] Multi-language support (Hindi/English)
+- [ ] Owner can toggle item availability from dashboard
+
+### Low Priority
+- [ ] Payment integration (UPI/card)
+- [ ] Loyalty/rewards program
+- [ ] Table reservation system
+- [ ] Analytics export (PDF/CSV)
+- [ ] Staff authentication
+- [ ] Multi-restaurant admin panel
 
 ## Known Issues
-
-- PWA icons still use default Flutter icons (not Ching Chong branded)
+- QR scanner is mock-only (no real camera access)
+- PWA icons still use default Flutter icons
 - No custom favicon
-- The restaurant logo is used but some category images (starter.jpg, rolls.jpg) are missing from assets
+- Missing category images: starter.jpg, rolls.jpg
+- No sound/vibration for kitchen notifications
 - Landing page → Menu transition could be smoother
 - No haptic feedback on add-to-cart
+
+## Architecture
+- **State:** Riverpod 2.x
+- **Routing:** GoRouter with hash strategy
+- **Data:** In-memory (mock), repository interfaces ready for Firestore
+- **UI:** Material 3, custom design system
+- **Deployment:** GitHub Actions → GitHub Pages
