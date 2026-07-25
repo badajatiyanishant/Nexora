@@ -33,3 +33,12 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/tenants/ching-chong/restaurant.json
+    - assets/tenants/ching-chong/menu.json
+    - assets/tenants/ching-chong/theme.json
+    - assets/tenants/ching-chong/dashboard.json
+    - assets/tenants/ching-chong/operations.json
+    - assets/tenants/ching-chong/brand/logo.png
+    - assets/tenants/ching-chong/menu/

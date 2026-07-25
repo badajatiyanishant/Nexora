@@ -17,9 +17,9 @@ import '../../../shared/widgets/widgets.dart';
 class LandingScreen extends StatelessWidget {
   const LandingScreen({super.key});
 
-  /// Stand-in tenant for the demo. Real slugs arrive from Firestore in
-  /// Milestone 5; nothing downstream depends on this value.
-  static const String demoSlug = 'demo';
+  /// Demo tenant slug. Real slugs arrive from Firestore in Milestone 5;
+  /// nothing downstream depends on this value.
+  static const String demoSlug = 'ching-chong';
 
   @override
   Widget build(BuildContext context) {

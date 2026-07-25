@@ -1,9 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 import '../../features/auth/screens/landing_screen.dart';
 import '../../features/auth/screens/splash_screen.dart';
+import '../../features/customer/screens/cart_page.dart';
+import '../../features/customer/screens/customer_menu_screen.dart';
 import '../../shared/widgets/placeholder_screen.dart';
 import '../../shared/widgets/widgets.dart';
 import '../constants/app_constants.dart';
@@ -17,6 +21,12 @@ import 'route_paths.dart';
 /// Screens still to be built resolve to [PlaceholderScreen], which keeps deep
 /// links and the QR URL shape testable from Milestone 1.
 final appRouterProvider = Provider<GoRouter>((ref) {
+  // GitHub Pages serves static files — PathUrlStrategy causes 404 on refresh.
+  // Hash routing (#/r/ching-chong/menu) keeps every route client-side.
+  if (kIsWeb) {
+    setUrlStrategy(HashUrlStrategy());
+  }
+
   return GoRouter(
     initialLocation: RoutePaths.splash,
     debugLogDiagnostics: true,
@@ -53,20 +63,12 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: '${RoutePaths.restaurant}/${RoutePaths.menu}',
             name: RoutePaths.nMenu,
-            builder: (context, state) => const PlaceholderScreen(
-              title: 'Menu',
-              milestone: 'Milestone 2',
-              icon: Icons.restaurant_menu_rounded,
-            ),
+            builder: (context, state) => const CustomerMenuScreen(),
           ),
           GoRoute(
             path: '${RoutePaths.restaurant}/${RoutePaths.cart}',
             name: RoutePaths.nCart,
-            builder: (context, state) => const PlaceholderScreen(
-              title: 'Cart',
-              milestone: 'Milestone 2',
-              icon: Icons.shopping_cart_rounded,
-            ),
+            builder: (context, state) => const CartPage(),
           ),
           GoRoute(
             path: '${RoutePaths.restaurant}/${RoutePaths.checkout}',
