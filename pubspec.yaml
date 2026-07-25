@@ -1,0 +1,35 @@
+name: nexora
+description: "Nexora Orders — Smart Ordering for Modern Restaurants."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.2
+
+# Milestones 1-4 are UI-first: every screen runs against in-memory mock
+# repositories so the demo is presentable to restaurant owners before any
+# backend exists. Firebase packages arrive in Milestone 5 and plug in behind
+# the same repository interfaces, leaving the UI layer untouched.
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+  # State management & routing
+  flutter_riverpod: ^2.5.1
+  go_router: ^14.2.0
+
+  # UI
+  google_fonts: ^6.2.1
+  cached_network_image: ^3.3.1
+  intl: ^0.19.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
