@@ -6,6 +6,7 @@ import '../../../core/routing/restaurant_scope.dart';
 import '../../../core/routing/route_paths.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../shared/models/menu.dart';
+import '../../../shared/models/restaurant.dart';
 import '../providers/cart_provider.dart';
 import '../providers/menu_provider.dart';
 import '../providers/restaurant_provider.dart';
@@ -144,7 +145,7 @@ class _CustomerMenuScreenState extends ConsumerState<CustomerMenuScreen> {
 
                           // ── Offer cards ────────────────────────
                           SliverToBoxAdapter(
-                            child: _OfferCards(tenantTheme: tenantTheme),
+                            child: _OfferCards(tenantTheme: tenantTheme, restaurant: restaurant),
                           ),
 
                           // ── Sticky category chips ──────────────
@@ -224,7 +225,7 @@ class _PromotionalBanner extends StatelessWidget {
   });
 
   final TenantTheme tenantTheme;
-  final dynamic restaurant;
+  final Restaurant restaurant;
 
   @override
   Widget build(BuildContext context) {
@@ -251,7 +252,7 @@ class _PromotionalBanner extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '🎉 Welcome to Ching Chong',
+                    '🎉 Welcome to ${restaurant.name}',
                     style: theme.textTheme.titleMedium?.copyWith(
                       color: Colors.white,
                       fontWeight: FontWeight.w700,
@@ -259,7 +260,7 @@ class _PromotionalBanner extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '20% OFF on dine-in orders above ₹300',
+                    'Freshly cooked. Dine-in & Takeaway available.',
                     style: theme.textTheme.bodyMedium?.copyWith(
                       color: Colors.white.withValues(alpha: 0.85),
                     ),
@@ -304,9 +305,13 @@ class _PromotionalBanner extends StatelessWidget {
 // ═══════════════════════════════════════════════════════════════════════
 
 class _OfferCards extends StatelessWidget {
-  const _OfferCards({required this.tenantTheme});
+  const _OfferCards({
+    required this.tenantTheme,
+    required this.restaurant,
+  });
 
   final TenantTheme tenantTheme;
+  final Restaurant restaurant;
 
   @override
   Widget build(BuildContext context) {
@@ -314,14 +319,14 @@ class _OfferCards extends StatelessWidget {
     final offers = [
       (
         icon: Icons.schedule_rounded,
-        title: '22 min avg',
+        title: '${restaurant.service.averagePrepMinutes} min avg',
         subtitle: 'Fast preparation',
         color: tenantTheme.secondary,
       ),
       (
         icon: Icons.star_rounded,
-        title: '4.6 rated',
-        subtitle: '1,200+ reviews',
+        title: '${restaurant.rating} rated',
+        subtitle: '${restaurant.ratingCount}+ reviews',
         color: const Color(0xFF2E7D32),
       ),
       (
@@ -332,8 +337,10 @@ class _OfferCards extends StatelessWidget {
       ),
       (
         icon: Icons.location_on_outlined,
-        title: 'Raja Park',
-        subtitle: 'Jaipur, Rajasthan',
+        title: restaurant.address.line2.isNotEmpty
+            ? restaurant.address.line2.split(',')[0]
+            : restaurant.address.city,
+        subtitle: restaurant.address.city,
         color: tenantTheme.primary,
       ),
     ];
