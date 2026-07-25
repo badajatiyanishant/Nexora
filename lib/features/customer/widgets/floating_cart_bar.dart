@@ -86,6 +86,8 @@ class FloatingCartBar extends StatelessWidget {
                       // Subtotal
                       Text(
                         '₹${cart.subtotal}',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                         style: AppTypography.numeric(
                           size: 18,
                           weight: FontWeight.w800,

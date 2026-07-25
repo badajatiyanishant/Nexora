@@ -87,7 +87,7 @@ class _ProductDetailContent extends StatelessWidget {
                   children: [
                     // ── Large image ──────────────────────────────────
                     SizedBox(
-                      height: 260,
+                      height: MediaQuery.sizeOf(context).height * 0.32,
                       width: double.infinity,
                       child: Stack(
                         fit: StackFit.expand,

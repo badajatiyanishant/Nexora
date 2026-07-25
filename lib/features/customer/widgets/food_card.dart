@@ -98,6 +98,7 @@ class FoodCard extends StatelessWidget {
                     const SizedBox(height: 4),
                     // Rating + Prep time row
                     Row(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         if (item.rating > 0) ...[
                           Icon(Icons.star_rounded, size: 14, color: secondary),
@@ -150,20 +151,25 @@ class FoodCard extends StatelessWidget {
                     // Price + Add button row
                     Row(
                       children: [
-                        Text(
-                          '₹${item.price}',
-                          style: AppTypography.numeric(
-                            size: 18,
-                            weight: FontWeight.w800,
-                            color: scheme.onSurface,
+                        Flexible(
+                          child: Text(
+                            '₹${item.price}',
+                            style: AppTypography.numeric(
+                              size: 18,
+                              weight: FontWeight.w800,
+                              color: scheme.onSurface,
+                            ),
                           ),
                         ),
                         if (item.portion != null) ...[
                           const SizedBox(width: 6),
-                          Text(
-                            item.portion!,
-                            style: theme.textTheme.bodySmall?.copyWith(
-                              fontSize: 11,
+                          Flexible(
+                            child: Text(
+                              item.portion!,
+                              style: theme.textTheme.bodySmall?.copyWith(
+                                fontSize: 11,
+                              ),
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                         ],

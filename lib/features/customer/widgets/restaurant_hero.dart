@@ -34,7 +34,7 @@ class RestaurantHero extends StatelessWidget {
         children: [
           // ── Cover image + gradient overlay ───────────────────────────
           SizedBox(
-            height: isMobile ? 260 : 340,
+            height: MediaQuery.sizeOf(context).height * (isMobile ? 0.38 : 0.42),
             width: double.infinity,
             child: Stack(
               fit: StackFit.expand,
