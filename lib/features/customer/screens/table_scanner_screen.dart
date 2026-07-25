@@ -24,7 +24,10 @@ class _TableScannerScreenState extends ConsumerState<TableScannerScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _pulseController;
   late AnimationController _scanLineController;
+  late AnimationController _torchController;
   bool _isScanning = false;
+  bool _torchOn = false;
+  String? _torchMessage;
 
   @override
   void initState() {
@@ -37,16 +40,48 @@ class _TableScannerScreenState extends ConsumerState<TableScannerScreen>
       vsync: this,
       duration: const Duration(milliseconds: 2000),
     )..repeat();
+    _torchController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 200),
+    );
   }
 
   @override
   void dispose() {
     _pulseController.dispose();
     _scanLineController.dispose();
+    _torchController.dispose();
     super.dispose();
   }
 
+  void _toggleTorch() {
+    setState(() {
+      _torchOn = !_torchOn;
+      _torchMessage = _torchOn ? 'Flashlight On' : 'Flashlight Off';
+    });
+    if (_torchOn) {
+      _torchController.forward();
+    } else {
+      _torchController.reverse();
+    }
+    // Clear message after 1.5s
+    Future<void>.delayed(const Duration(milliseconds: 1500), () {
+      if (mounted) setState(() => _torchMessage = null);
+    });
+  }
+
+  void _turnOffTorch() {
+    if (_torchOn) {
+      setState(() {
+        _torchOn = false;
+        _torchMessage = null;
+      });
+      _torchController.reverse();
+    }
+  }
+
   void _simulateScan() {
+    _turnOffTorch();
     setState(() => _isScanning = true);
     // Simulate scan delay
     Future<void>.delayed(const Duration(milliseconds: 800), () {
@@ -188,7 +223,10 @@ class _TableScannerScreenState extends ConsumerState<TableScannerScreen>
               children: [
                 _CircleButton(
                   icon: Icons.arrow_back_rounded,
-                  onTap: () => context.pop(),
+                  onTap: () {
+                    _turnOffTorch();
+                    context.pop();
+                  },
                 ),
                 const Spacer(),
                 const Text(
@@ -200,13 +238,82 @@ class _TableScannerScreenState extends ConsumerState<TableScannerScreen>
                   ),
                 ),
                 const Spacer(),
-                _CircleButton(
-                  icon: Icons.flash_on_rounded,
-                  onTap: () {},
+                // Torch toggle button with animation
+                GestureDetector(
+                  onTap: _isScanning ? null : _toggleTorch,
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: _torchOn
+                          ? const Color(0xFFFFC72C).withValues(alpha: 0.9)
+                          : Colors.white.withValues(alpha: 0.15),
+                      shape: BoxShape.circle,
+                    ),
+                    child: AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 200),
+                      child: Icon(
+                        _torchOn
+                            ? Icons.flash_on_rounded
+                            : Icons.flash_off_rounded,
+                        key: ValueKey(_torchOn),
+                        color: _torchOn ? const Color(0xFF1A1614) : Colors.white,
+                        size: 22,
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
           ),
+
+          // Torch status message
+          if (_torchMessage != null)
+            Positioned(
+              top: MediaQuery.paddingOf(context).top + 60,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: AnimatedOpacity(
+                  opacity: _torchMessage != null ? 1.0 : 0.0,
+                  duration: const Duration(milliseconds: 200),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 14, vertical: 6),
+                    decoration: BoxDecoration(
+                      color: Colors.black.withValues(alpha: 0.7),
+                      borderRadius: AppRadius.brPill,
+                    ),
+                    child: Text(
+                      _torchMessage!,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+          // Torch glow effect on camera view
+          if (_torchOn)
+            Positioned.fill(
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: RadialGradient(
+                    center: Alignment.center,
+                    radius: 1.2,
+                    colors: [
+                      const Color(0xFFFFC72C).withValues(alpha: 0.12),
+                      Colors.transparent,
+                    ],
+                  ),
+                ),
+              ),
+            ),
 
           // Bottom area
           Positioned(
