@@ -94,7 +94,7 @@ class CartPage extends ConsumerWidget {
                       child: ListView.separated(
                         padding: const EdgeInsets.all(16),
                         itemCount: cart.items.length,
-                        separatorBuilder: (_, __) => const Divider(height: 1),
+                        separatorBuilder: (_, _) => const Divider(height: 1),
                         itemBuilder: (context, index) {
                           final ci = cart.items[index];
                           return _CartItemTile(
@@ -142,7 +142,7 @@ class CartPage extends ConsumerWidget {
                           ),
                           const SizedBox(height: 8),
                           _SummaryRow(
-                            label: 'Delivery',
+                            label: 'Dine-In',
                             value: 'FREE',
                             valueColor: const Color(0xFF2E7D32),
                           ),

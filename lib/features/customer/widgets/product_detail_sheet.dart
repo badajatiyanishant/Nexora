@@ -96,7 +96,7 @@ class _ProductDetailContent extends StatelessWidget {
                             Image.asset(
                               item.image,
                               fit: BoxFit.cover,
-                              errorBuilder: (_, __, ___) =>
+                              errorBuilder: (_, _, _) =>
                                   _ImagePlaceholder(primaryColor: primaryColor),
                             )
                           else

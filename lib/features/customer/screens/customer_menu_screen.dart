@@ -313,13 +313,7 @@ class _OfferCards extends StatelessWidget {
     final theme = Theme.of(context);
     final offers = [
       (
-        icon: Icons.delivery_dining_rounded,
-        title: 'Free Delivery',
-        subtitle: 'On orders above ₹300',
-        color: tenantTheme.primary,
-      ),
-      (
-        icon: Icons.access_time_rounded,
+        icon: Icons.schedule_rounded,
         title: '22 min avg',
         subtitle: 'Fast preparation',
         color: tenantTheme.secondary,
@@ -336,6 +330,12 @@ class _OfferCards extends StatelessWidget {
         subtitle: 'Made to order',
         color: tenantTheme.primary,
       ),
+      (
+        icon: Icons.location_on_outlined,
+        title: 'Raja Park',
+        subtitle: 'Jaipur, Rajasthan',
+        color: tenantTheme.primary,
+      ),
     ];
 
     return SizedBox(
@@ -344,7 +344,7 @@ class _OfferCards extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
         itemCount: offers.length,
-        separatorBuilder: (_, __) => const SizedBox(width: 12),
+        separatorBuilder: (_, _) => const SizedBox(width: 12),
         itemBuilder: (context, index) {
           final o = offers[index];
           return Container(
@@ -411,8 +411,9 @@ class _CategorySection extends StatelessWidget {
     final theme = Theme.of(context);
     final scheme = theme.colorScheme;
 
-    if (items.isEmpty)
+    if (items.isEmpty) {
       return const SliverToBoxAdapter(child: SizedBox.shrink());
+    }
 
     return SliverToBoxAdapter(
       child: Padding(
@@ -437,7 +438,7 @@ class _CategorySection extends StatelessWidget {
                     child: Image.asset(
                       category.image,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => Icon(
+                      errorBuilder: (_, _, _) => Icon(
                         Icons.restaurant_rounded,
                         size: 20,
                         color: tenantTheme.primary.withValues(alpha: 0.4),

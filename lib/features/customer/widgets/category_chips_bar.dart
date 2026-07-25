@@ -86,7 +86,7 @@ class _CategoryChipsBarState extends State<CategoryChipsBar> {
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         itemCount: widget.categories.length,
-        separatorBuilder: (_, __) => const SizedBox(width: 8),
+        separatorBuilder: (_, _) => const SizedBox(width: 8),
         itemBuilder: (context, index) {
           final cat = widget.categories[index];
           final isSelected = cat.id == widget.selectedId;

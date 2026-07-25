@@ -236,7 +236,7 @@ class _FoodImage extends StatelessWidget {
             Image.asset(
               item.image,
               fit: BoxFit.cover,
-              errorBuilder: (_, __, ___) => _PlaceholderIcon(
+              errorBuilder: (_, _, _) => _PlaceholderIcon(
                 primaryColor: primaryColor,
               ),
             )

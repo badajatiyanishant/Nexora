@@ -43,7 +43,7 @@ class RestaurantHero extends StatelessWidget {
                 Image.asset(
                   'assets/tenants/ching-chong/menu/chowmein.jpg',
                   fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) => DecoratedBox(
+                  errorBuilder: (_, _, _) => DecoratedBox(
                     decoration: BoxDecoration(gradient: tenantTheme.heroGradient),
                   ),
                 ),
@@ -113,7 +113,7 @@ class RestaurantHero extends StatelessWidget {
                               child: Image.asset(
                                 restaurant.logo,
                                 fit: BoxFit.cover,
-                                errorBuilder: (_, __, ___) => Icon(
+                                errorBuilder: (_, _, _) => Icon(
                                   Icons.restaurant_rounded,
                                   color: tenantTheme.primary,
                                   size: 28,
@@ -150,7 +150,7 @@ class RestaurantHero extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 12),
-                        // Rating + Price + Delivery row
+                        // Rating + Prep time + Price row
                         Wrap(
                           spacing: 12,
                           runSpacing: 8,
@@ -163,10 +163,8 @@ class RestaurantHero extends StatelessWidget {
                               dark: true,
                             ),
                             _InfoChip(
-                              icon: Icons.delivery_dining_rounded,
-                              text: restaurant.service.delivery
-                                  ? 'Free delivery'
-                                  : 'Dine-in & Takeaway',
+                              icon: Icons.schedule_rounded,
+                              text: '${restaurant.service.averagePrepMinutes} min prep',
                               color: Colors.white,
                               dark: true,
                             ),
@@ -231,7 +229,7 @@ class RestaurantHero extends StatelessWidget {
                     child: ListView.separated(
                       scrollDirection: Axis.horizontal,
                       itemCount: restaurant.highlights.length,
-                      separatorBuilder: (_, __) => const SizedBox(width: 12),
+                      separatorBuilder: (_, _) => const SizedBox(width: 12),
                       itemBuilder: (context, index) {
                         final h = restaurant.highlights[index];
                         return _HighlightTile(
@@ -398,7 +396,7 @@ class _HighlightTile extends StatelessWidget {
   }
 
   IconData _iconFor(String key) => switch (key) {
-        'delivery' => Icons.delivery_dining_rounded,
+        'delivery' => Icons.location_on_outlined,
         'timer' => Icons.timer_outlined,
         'star' => Icons.star_rounded,
         'menu' => Icons.restaurant_menu_rounded,
