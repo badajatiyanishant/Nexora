@@ -6,6 +6,7 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 import '../../features/auth/screens/landing_screen.dart';
 import '../../features/auth/screens/splash_screen.dart';
+import '../../features/auth/widgets/pin_gate.dart';
 import '../../features/customer/screens/cart_page.dart';
 import '../../features/customer/screens/customer_menu_screen.dart';
 import '../../features/customer/screens/order_success_screen.dart';
@@ -18,6 +19,7 @@ import '../../shared/widgets/widgets.dart';
 import '../constants/app_constants.dart';
 import 'restaurant_scope.dart';
 import 'route_paths.dart';
+import '../../features/auth/providers/auth_provider.dart';
 
 /// The Nexora route tree.
 ///
@@ -109,7 +111,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: RoutePaths.kitchen,
         name: RoutePaths.nKitchen,
-        builder: (context, state) => const KitchenScreen(),
+        builder: (context, state) => const PinGate(
+          role: AuthRole.kitchen,
+          child: KitchenScreen(),
+        ),
       ),
 
       // Admin — redirects to the dashboard so /admin is always valid.
@@ -123,7 +128,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: RoutePaths.adminDashboard,
             name: RoutePaths.nAdminDashboard,
-            builder: (context, state) => const OwnerDashboard(),
+            builder: (context, state) => const PinGate(
+              role: AuthRole.admin,
+              child: OwnerDashboard(),
+            ),
           ),
           GoRoute(
             path: RoutePaths.adminMenu,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/theme/app_spacing.dart';
+import '../../auth/providers/auth_provider.dart';
 import '../../../shared/models/order.dart';
 import '../../../shared/providers/orders_provider.dart';
 
@@ -50,6 +52,14 @@ class KitchenScreen extends ConsumerWidget {
           ],
         ),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.logout_rounded),
+            tooltip: 'Logout',
+            onPressed: () {
+              ref.read(kitchenAuthProvider.notifier).logout();
+              context.go('/');
+            },
+          ),
           Container(
             margin: const EdgeInsets.only(right: 16),
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
