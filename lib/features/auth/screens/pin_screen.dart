@@ -316,11 +316,12 @@ class _NumberPad extends StatelessWidget {
                 }
                 if (key == '⌫') {
                   return _KeyButton(
-                    child: const Icon(Icons.backspace_outlined, size: 22),
                     onTap: enabled ? onDelete : null,
+                    child: const Icon(Icons.backspace_outlined, size: 22),
                   );
                 }
                 return _KeyButton(
+                  onTap: enabled ? () => onKeyPressed(key) : null,
                   child: Text(
                     key,
                     style: const TextStyle(
@@ -328,7 +329,6 @@ class _NumberPad extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  onTap: enabled ? () => onKeyPressed(key) : null,
                 );
               }).toList(),
             ),
